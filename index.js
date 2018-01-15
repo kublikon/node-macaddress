@@ -32,6 +32,9 @@ function parallel(tasks, done) {
 
 lib.networkInterfaces = function () {
     var ifaces = os.networkInterfaces();
+
+    console.log('[>>] ifaces', ifaces);
+
     var allAddresses = {};
     Object.keys(ifaces).forEach(function (iface) {
         var addresses = {};
