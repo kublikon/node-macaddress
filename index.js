@@ -33,8 +33,6 @@ function parallel(tasks, done) {
 lib.networkInterfaces = function () {
     var ifaces = os.networkInterfaces();
 
-    console.log('[>>] ifaces', ifaces);
-
     var allAddresses = {};
     Object.keys(ifaces).forEach(function (iface) {
         var addresses = {};
@@ -79,18 +77,10 @@ switch (os.platform()) {
 }
 
 lib.one = function (iface, callback) {
-
-    console.log('[0] iface', iface);
-
     if (typeof iface === 'function') {
         callback = iface;
 
-        console.log('[1] in here');
-
         var ifaces = lib.networkInterfaces();
-
-        console.log('[2], ifaces', ifaces);
-
         var alleged = [ 'eth0', 'eth1', 'en0', 'en1' ];
         iface = Object.keys(ifaces)[0];
         for (var i = 0; i < alleged.length; i++) {
@@ -99,9 +89,6 @@ lib.one = function (iface, callback) {
                 break;
             }
         }
-
-        console.log('[3] ifaces[iface]', ifaces[iface]);
-
         if (!ifaces[iface]) {
             if (typeof callback === 'function') {
                 process.nextTick(function() {
