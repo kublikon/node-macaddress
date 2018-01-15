@@ -67,7 +67,7 @@ switch (os.platform()) {
     case 'sunos':
         _getMacAddress = require('./lib/unix.js');
         break;
-        
+
     default:
         console.warn("node-macaddress: Unkown os.platform(), defaulting to `unix'.");
         _getMacAddress = require('./lib/unix.js');
@@ -76,6 +76,9 @@ switch (os.platform()) {
 }
 
 lib.one = function (iface, callback) {
+
+    console.log('iface', iface); 
+
     if (typeof iface === 'function') {
         callback = iface;
 
